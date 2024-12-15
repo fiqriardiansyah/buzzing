@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+
+  body {
+    @apply overflow-x-hidden;
+  }
+
+  * {
+    @apply font-jakarta scroll-smooth;
+  }
+
+  .container-custom {
+    @apply container mx-auto 2xl:w-[70vw] xl:w-[80vw] lg:w-[85vw] w-[90vw];
+  }
+
+  .card-primary-style {
+    @apply !bg-primary-yellow !text-primary hover:!translate-x-1 hover:!translate-y-1 transform !font-semibold transition-all duration-100 !shadow-[6px_6px_0px_#39352D] hover:!shadow-[0px_0px_0px_#39352D];
+  }
+
+  .card-primary-style-white {
+    @apply !bg-primary-yellow !text-primary hover:!translate-x-1 hover:!translate-y-1 transform !font-semibold transition-all duration-100 !shadow-[6px_6px_0px_#ffffff] hover:!shadow-[0px_0px_0px_#ffffff];
+  }
+
+  .up-down-animation {
+    animation: moveUpDown 2s ease-in-out infinite;
+  }
+
+}
+
+@keyframes moveUpDown {
+  0% {
+    transform: translateY(0); /* Start at original position */
+  }
+  50% {
+    transform: translateY(5px); 
+  }
+  100% {
+    transform: translateY(0); /* Return to original position */
+  }
+}
