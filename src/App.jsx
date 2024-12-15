@@ -1,6 +1,7 @@
 import { CarouselProvider, Slide, Slider } from 'pure-react-carousel';
 import { useMediaQuery } from 'react-responsive'
 import 'pure-react-carousel/dist/react-carousel.es.css';
+import { Helmet } from 'react-helmet';
 
 import anchor from './assets/anchor.svg';
 import arrowdown from './assets/arrow-down.svg';
@@ -92,6 +93,15 @@ function App() {
  
   return (
     <>
+      <Helmet>
+      <meta property="og:title" content="Buzzing" />
+      <meta property="og:site_name" content="Buzzing" />
+      <meta property="og:url" content="" />
+      <meta property="og:description" content="Boost Your Business with the RightCampaign!
+      We help MSMEs reach more customers with measurable and effective strategies." />
+      <meta property="og:type" content="" />
+      <meta property="og:image" content="https://ik.imagekit.io/p4ukigs1hrvx/Group%2058_GKucLIcP9.png?updatedAt=1734234933561" />
+      </Helmet>
       <div className={`w-[80vw] h-screen fixed lg:hidden bg-primary top-0 left-0 flex items-center justify-center transform transition-all duration-500 z-50 translate-x-[-80vw] ${showMenu ? "!translate-x-0 delay-500" : ""}`}>
         <ul className='flex flex-col items-center gap-10 relative z-10'>
         <li className='flex flex-col gap-1 group'>
