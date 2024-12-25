@@ -1,9 +1,9 @@
+import React from 'react';
 import { CarouselProvider, Slide, Slider } from 'pure-react-carousel';
 import { useMediaQuery } from 'react-responsive'
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import { Helmet } from 'react-helmet';
 
-import anchor from './assets/anchor.svg';
 import arrowdown from './assets/arrow-down.svg';
 import arrowtrdark from './assets/arrow-top-right-dark.svg';
 import arrowtr from './assets/arrow-top-right.svg';
@@ -17,15 +17,24 @@ import client4 from './assets/client-4.png';
 import moneyblue from './assets/money-bag-blue.png';
 import moneygreen from './assets/money-bag-green.png';
 import moneyhand from './assets/money-hand.png';
-import React from 'react';
+import calculateBg from './assets/calculate-bg.png';
+import stars from './assets/stars.png';
+import edit from './assets/edit.svg';
+import digitalads from './assets/digital-ads.svg';
+import buzzer from './assets/buzzer.svg';
+import social from './assets/chat.svg';
+import appStore from './assets/app-store.svg';
+import review from './assets/review.svg';
+import trending from './assets/trending.svg';
+import ModalCalculate from './modal-calculate';
 
 const whatwedo = [
-  { id: 1, title: "Boost Campaign", desc: "Lorem ipsum dolor sit amet consectetur. Turpis id pulvinar", icon: anchor },
-  { id: 2, title: "App Store & Play Store Optimization ", desc: "Lorem ipsum dolor sit amet consectetur. Turpis id pulvinar", icon: anchor },
-  { id: 3, title: "Trending Hashtag Campaigns", desc: "Lorem ipsum dolor sit amet consectetur. Turpis id pulvinar", icon: anchor },
-  { id: 4, title: "Boost Campaign", desc: "Lorem ipsum dolor sit amet consectetur. Turpis id pulvinar", icon: anchor },
-  { id: 5, title: "App Store & Play Store Optimization ", desc: "Lorem ipsum dolor sit amet consectetur. Turpis id pulvinar", icon: anchor },
-  { id: 6, title: "Trending Hashtag Campaigns", desc: "Lorem ipsum dolor sit amet consectetur. Turpis id pulvinar", icon: anchor },
+  { id: 1, title: "Digital Ads", desc: "Boost brand visibility and engagement through targeted ads on platforms like Google, Facebook, and Instagram.", icon: digitalads },
+  { id: 2, title: "Buzzer Marketing ", desc: "Leverage buzzer networks to create brand awareness and drive engagement.", icon: buzzer },
+  { id: 3, title: "Social Media Engagement", desc: "Increase likes, comments, shares, and follows on social media platforms like Instagram and Twitter.", icon: social },
+  { id: 4, title: "App Store Optimization", desc: "Improve app visibility and downloads on the App Store and Google Play Store with keyword and content optimization.", icon: appStore },
+  { id: 5, title: "Review Management", desc: "Enhance app and business reviews on platforms like Google Maps and app stores to build credibility.", icon: review },
+  { id: 6, title: "Trending Hashtags", desc: "Create and promote viral hashtags to boost brand visibility on social media platforms.", icon: trending },
 ];
 
 const clients = [
@@ -37,11 +46,11 @@ const clients = [
 
 function App() {
   const [showMenu, setShowMenu] = React.useState(false);
+  const [showModal, setShowModal] = React.useState(false);
 
   const maxMD = useMediaQuery({ query: '(min-width: 768px)' });
   const maxLG = useMediaQuery({ query: '(min-width: 1024px)' });
   const maxXL = useMediaQuery({ query: '(min-width: 1280px)' });
-  // const isPortrait = useMediaQuery({ query: '(orientation: portrait)' })
 
   const visibleSlides = () => {
     if(maxXL) return 6;
@@ -94,14 +103,15 @@ function App() {
   return (
     <>
       <Helmet>
-      <meta property="og:title" content="Buzzing" />
-      <meta property="og:site_name" content="Buzzing" />
-      <meta property="og:url" content="" />
-      <meta property="og:description" content="Boost Your Business with the RightCampaign!
-      We help MSMEs reach more customers with measurable and effective strategies." />
-      <meta property="og:type" content="" />
-      <meta property="og:image" content="https://ik.imagekit.io/p4ukigs1hrvx/Group%2058_GKucLIcP9.png?updatedAt=1734234933561" />
+        <meta property="og:title" content="Buzzing" />
+        <meta property="og:site_name" content="Buzzing" />
+        <meta property="og:url" content="" />
+        <meta property="og:description" content="Boost Your Business with the RightCampaign!
+        We help MSMEs reach more customers with measurable and effective strategies." />
+        <meta property="og:type" content="" />
+        <meta property="og:image" content="https://ik.imagekit.io/p4ukigs1hrvx/Group%2058_GKucLIcP9.png?updatedAt=1734234933561" />
       </Helmet>
+      <ModalCalculate show={showModal} setShow={setShowModal} />
       <div className={`w-[80vw] h-screen fixed lg:hidden bg-primary top-0 left-0 flex items-center justify-center transform transition-all duration-500 z-50 translate-x-[-80vw] ${showMenu ? "!translate-x-0 delay-500" : ""}`}>
         <ul className='flex flex-col items-center gap-10 relative z-10'>
         <li className='flex flex-col gap-1 group'>
@@ -239,7 +249,19 @@ function App() {
           </Slider>
         </CarouselProvider>
       </section>
-      <section className='w-full bg-primary py-20' id='cost-calculation'>
+      <section className='py-20 relative w-full flex items-center justify-center overflow-hidden' id='cost-calculation'>
+        <img src={calculateBg} className='w-full h-full absolute top-0 left-0 object-cover' alt="" />
+        <img src={stars} alt="" className='top-1/2 transform -translate-y-1/2 absolute left-[10%]' />
+        <img src={moneyblue} alt="" className='-bottom-1/4 transform scale-125 absolute right-0' />
+        <div className="relative z-10 flex flex-col items-center gap-10">
+          <p className='text-4xl font-bold text-primary text-center'>Calculate Your Needs and <br /> Budget Estimation</p>
+          <button onClick={() => setShowModal(true)} className="card-primary-style flex items-center py-3 px-6 rounded-xl gap-2 w-fit">
+            CALCULATE BUDGET 
+            <img src={edit} className='' alt="" />
+          </button>
+        </div>
+      </section>
+      <section className='w-full bg-primary py-20' >
         <div className="container-custom flex flex-col md:flex-row gap-10">
           <div className="flex-1 flex flex-col gap-10">
             <p className='text-6xl font-bold bg-clip-text bg-gradient-to-r text-transparent from-[#C650D6] to-[#95ADE5]'>Ready to start the project?</p>
